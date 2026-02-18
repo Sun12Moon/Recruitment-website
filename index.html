@@ -3,444 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechRecruit - Technical Job Portal</title>
-    <style>
-        /* --- CSS Reset & Variables --- */
-        :root {
-            --primary-color: #007bff; /* Corporate Tech Blue */
-            --secondary-color: #1a252f; /* Dark Slate */
-            --accent-color: #00c4cc; /* Teal for highlights */
-            --light-bg: #f8f9fa;
-            --white: #ffffff;
-            --text-color: #444;
-            --border-radius: 6px;
-            --shadow: 0 5px 15px rgba(0,0,0,0.08);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Roboto', 'Segoe UI', sans-serif;
-        }
-
-        body {
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--light-bg);
-        }
-
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
-
-        /* --- Header & Navigation --- */
-        header {
-            background-color: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 3px solid var(--primary-color);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 80px;
-        }
-
-        .logo {
-            font-size: 1.1rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            color: var(--secondary-color);
-            letter-spacing: 0.5px;
-            border: 2px solid var(--secondary-color);
-            padding: 8px 15px;
-            border-radius: 4px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            font-weight: 500;
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            transition: color 0.3s;
-            color: var(--secondary-color);
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        /* --- Hero Section --- */
-        .hero {
-            height: 90vh;
-            /* Tech background image */
-            background: linear-gradient(rgba(26, 37, 47, 0.85), rgba(26, 37, 47, 0.85)), url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--white);
-            padding-top: 80px;
-        }
-
-        .hero-content h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-
-        .hero-content p {
-            font-size: 1.3rem;
-            margin-bottom: 35px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            color: #ddd;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: var(--white);
-            padding: 14px 35px;
-            border-radius: var(--border-radius);
-            font-weight: 600;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background-color: #0056b3;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-
-        /* --- Generic Section Styles --- */
-        section { padding: 80px 0; }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title h2 {
-            font-size: 2.2rem;
-            color: var(--secondary-color);
-            margin-bottom: 15px;
-        }
-
-        .section-title .line {
-            width: 80px;
-            height: 4px;
-            background-color: var(--primary-color);
-            margin: 0 auto;
-        }
-
-        /* --- About Section --- */
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 60px;
-        }
-
-        .about-img { flex: 1; }
-        
-        .about-img img {
-            width: 100%;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-        }
-
-        .about-text { flex: 1; }
-        
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: var(--secondary-color);
-        }
-
-        /* --- Jobs Grid (Formerly Menu) --- */
-        .jobs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-        }
-
-        .job-card {
-            background: var(--white);
-            border-radius: var(--border-radius);
-            border-left: 5px solid var(--primary-color);
-            box-shadow: var(--shadow);
-            transition: transform 0.3s;
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .job-card:hover {
-            transform: translateY(-5px);
-            border-left-color: var(--accent-color);
-        }
-
-        .job-role {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--secondary-color);
-            margin-bottom: 10px;
-        }
-
-        .job-details {
-            margin-bottom: 20px;
-            color: #666;
-            font-size: 0.95rem;
-        }
-        
-        .job-details span {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .tag-container {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-        }
-
-        .tech-tag {
-            background-color: #eef4fc;
-            color: var(--primary-color);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .btn-sm {
-            padding: 10px 20px;
-            text-align: center;
-            font-size: 0.9rem;
-            align-self: flex-start;
-        }
-
-        /* --- Contact Section --- */
-        .contact-section { background-color: var(--white); }
-        
-        .contact-form {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .form-group { margin-bottom: 20px; }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--secondary-color);
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: var(--border-radius);
-            font-size: 1rem;
-            background-color: #fafafa;
-        }
-
-        .form-group textarea {
-            height: 150px;
-            resize: none;
-        }
-
-        /* --- Footer --- */
-        footer {
-            background-color: var(--secondary-color);
-            color: #ccc;
-            text-align: center;
-            padding: 40px 0;
-            font-size: 0.9rem;
-        }
-
-        /* --- Responsive --- */
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero-content h1 { font-size: 2.2rem; }
-            .about-content { flex-direction: column; }
-        }
-    </style>
+    <title>TechRecruit | Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
     <header>
         <div class="container">
             <nav>
-                <div class="logo">A job recruitment based website</div>
-                
+                <a href="index.html" class="logo">Tech<span>Recruit</span></a>
                 <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#jobs">Openings</a></li> <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="jobs.html">Find Jobs</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
+                <a href="contact.html" class="btn-nav">Post a Job</a>
             </nav>
         </div>
     </header>
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Build Your Future in Tech</h1>
-            <p>Connecting top-tier developers, engineers, and data scientists with the world's most innovative companies.</p>
-            <a href="#jobs" class="btn">Find a Job</a>
-        </div>
-    </section>
-
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>Who We Are</h2>
-                <div class="line"></div>
-            </div>
-            <div class="about-content">
-                <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Team meeting">
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="badge" style="background: #eff6ff; color: var(--primary); margin-bottom: 20px;">#1 Job Board for Tech</div>
+                    <h1>Where the world's best <br><span>developers get hired.</span></h1>
+                    <p>Join 10,000+ tech companies and startups hiring top talent. No middlemen, just direct connections.</p>
+                    <div class="search-wrapper">
+                        <input type="text" class="search-input" placeholder="Job title, keywords, or company...">
+                        <button class="search-btn" onclick="window.location.href='jobs.html'">Search Jobs</button>
+                    </div>
                 </div>
-                <div class="about-text">
-                    <h3>Bridging the Talent Gap</h3>
-                    <p>In the fast-paced world of technology, finding the right fit is crucial. "A job recruitment based website" was founded to streamline the hiring process for both candidates and employers.</p>
-                    <br>
-                    <p>We specialize in IT, Software Development, Data Science, and Cybersecurity roles. Our rigorous vetting process ensures that we only present the best opportunities to our candidates.</p>
+            </div>
+        </section>
+
+        <div class="trusted-by">
+            <div class="container">
+                <p style="font-size: 0.85rem; font-weight: 600; color: #64748B; text-transform: uppercase;">Trusted by fast-growing teams</p>
+                <div class="brand-logos">
+                    <span>stripe</span> <span>airbnb</span> <span>discord</span> <span>coinbase</span> <span>notion</span>
                 </div>
             </div>
         </div>
-    </section>
-
-    <section id="jobs" style="background-color: #e9ecef;">
-        <div class="container">
-            <div class="section-title">
-                <h2>Current Opportunities</h2>
-                <div class="line"></div>
-            </div>
-            <div class="jobs-grid">
-                
-                <div class="job-card">
-                    <div>
-                        <h3 class="job-role">Frontend Developer</h3>
-                        <div class="job-details">
-                            <span><strong>Company:</strong> TechNova Solutions</span>
-                            <span><strong>Location:</strong> San Francisco (Remote)</span>
-                            <span><strong>Salary:</strong> $110k - $140k</span>
-                        </div>
-                        <div class="tag-container">
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">TypeScript</span>
-                            <span class="tech-tag">CSS3</span>
-                        </div>
-                    </div>
-                    <a href="#contact" class="btn btn-sm">Apply Now</a>
-                </div>
-
-                <div class="job-card">
-                    <div>
-                        <h3 class="job-role">Backend Engineer</h3>
-                        <div class="job-details">
-                            <span><strong>Company:</strong> DataFlow Systems</span>
-                            <span><strong>Location:</strong> New York, NY</span>
-                            <span><strong>Salary:</strong> $130k - $160k</span>
-                        </div>
-                        <div class="tag-container">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Django</span>
-                            <span class="tech-tag">AWS</span>
-                        </div>
-                    </div>
-                    <a href="#contact" class="btn btn-sm">Apply Now</a>
-                </div>
-
-                <div class="job-card">
-                    <div>
-                        <h3 class="job-role">DevOps Specialist</h3>
-                        <div class="job-details">
-                            <span><strong>Company:</strong> CloudScale Inc.</span>
-                            <span><strong>Location:</strong> Austin, TX</span>
-                            <span><strong>Salary:</strong> $125k - $150k</span>
-                        </div>
-                        <div class="tag-container">
-                            <span class="tech-tag">Docker</span>
-                            <span class="tech-tag">Kubernetes</span>
-                            <span class="tech-tag">CI/CD</span>
-                        </div>
-                    </div>
-                    <a href="#contact" class="btn btn-sm">Apply Now</a>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="contact-section">
-        <div class="container">
-            <div class="section-title">
-                <h2>Submit Your Application</h2>
-                <div class="line"></div>
-            </div>
-            <div class="contact-form">
-                <form>
-                    <div class="form-group">
-                        <label>Full Name</label>
-                        <input type="text" placeholder="John Doe" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Email Address</label>
-                        <input type="email" placeholder="john@example.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Position Applying For</label>
-                        <select>
-                            <option>Frontend Developer</option>
-                            <option>Backend Engineer</option>
-                            <option>DevOps Specialist</option>
-                            <option>General Inquiry</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Cover Letter / Message</label>
-                        <textarea placeholder="Tell us why you are a good fit..."></textarea>
-                    </div>
-                    <button type="submit" class="btn" style="width: 100%;">Submit Application</button>
-                </form>
-            </div>
-        </div>
-    </section>
+    </main>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 A job recruitment based website. Connecting Talent with Opportunity.</p>
+            <div class="copyright"><p>&copy; 2025 TechRecruit Inc.</p></div>
         </div>
     </footer>
-
 </body>
 </html>
