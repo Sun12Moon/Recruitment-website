@@ -1,0 +1,47 @@
+/* css/style.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+body { 
+    font-family: 'Inter', sans-serif; 
+    background-color: #F8FAFC; 
+    min-height: 100vh; 
+    display: flex; 
+    flex-direction: column; 
+}
+
+main { flex: 1; } /* Pushes footer to the bottom */
+
+/* Custom Utilities */
+.backdrop-blur { backdrop-filter: blur(10px); }
+
+.text-gradient { 
+    background: linear-gradient(135deg, #0d6efd 0%, #6366f1 100%); 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+}
+
+.hero-bg { 
+    background: radial-gradient(circle at top right, #DBEAFE 0%, transparent 40%), 
+                radial-gradient(circle at bottom left, #F1F5F9 0%, transparent 40%); 
+}
+
+/* Custom Search Bar */
+.search-wrapper { border-radius: 50px; padding: 6px; }
+.search-wrapper input { border-radius: 50px 0 0 50px; border: none; }
+.search-wrapper input:focus { box-shadow: none; }
+.search-wrapper button { border-radius: 40px; padding: 10px 30px; }
+
+/* Job Card specifics */
+.company-logo { 
+    width: 48px; height: 48px; 
+    border-radius: 8px; 
+    display: flex; align-items: center; justify-content: center; 
+    font-weight: 700; font-size: 1.2rem; 
+}
+
+.job-card { transition: all 0.3s ease; }
+.job-card:hover { 
+    transform: translateY(-4px); 
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important; 
+    border-color: #0d6efd !important; 
+}
