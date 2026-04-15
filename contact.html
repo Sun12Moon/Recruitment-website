@@ -1,143 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechRecruit | Contact</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <link rel="stylesheet" href="style.css">
-    
-    <style>
-        /* Ensuring custom styles blend with Bootstrap */
-        .contact-container {
-            max-width: 600px;
-            margin: 40px auto;
-            padding: 30px;
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-        }
-        .page-header {
-            padding: 60px 0;
-            background: #f8fafc;
-            text-align: center;
-        }
-        .page-header h1 { font-weight: 700; color: #1e293b; }
-        .btn-primary { background-color: #2563eb; border: none; padding: 12px 24px; }
-        .btn-primary:hover { background-color: #1d4ed8; }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechRecruit | Contact</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header>
-        <div class="container">
-            <nav>
-                <a href="index.html" class="logo">Tech<span>Recruit</span></a>
-                <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="jobs.html">Find Jobs</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html" class="active">Contact</a></li>
-                </ul>
-                <a href="contact.html" class="btn-nav">Post a Job</a>
-            </nav>
-        </div>
-    </header>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">Tech<span>Recruit</span></a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="jobs.html">Find Jobs</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                </ul>
+                <a href="contact.html" class="btn-nav">Post a Job</a>
+            </nav>
+        </div>
+    </header>
 
-    <main>
-        <div class="page-header">
-            <div class="container">
-                <div class="badge" style="background: #eff6ff; color: #2563eb; margin-bottom: 20px; display: inline-block; padding: 5px 15px; border-radius: 20px;">Support</div>
-                <h1>Get in Touch</h1>
-                <p>Apply for a job or post an opening. Our team usually responds within 24 hours.</p>
-            </div>
-        </div>
+    <main>
+        <div class="page-header">
+            <div class="container">
+                <h1>Get in Touch</h1>
+                <p>Apply for a job or post an opening.</p>
+            </div>
+        </div>
 
-        <section>
-            <div class="container">
-                <div class="contact-container">
-                    <form action="JobServlet" method="POST">
-                        <input type="hidden" name="action" id="formAction" value="insert">
-                        <input type="hidden" name="jobId" id="jobId">
+        <section>
+            <div class="container">
+                <div class="contact-container">
+                    <form>
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" class="form-control" placeholder="Jane Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" class="form-control" placeholder="jane@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Purpose</label>
+                            <select class="form-control">
+                                <option>Applying for a Job</option>
+                                <option>Posting a Job</option>
+                                <option>General Inquiry</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea class="form-control" style="height: 120px;" placeholder="How can we help?"></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
 
-                        <div class="mb-3">
-                            <label class="form-label">Full Name</label>
-                            <input type="text" name="fullName" id="fullName" class="form-control" placeholder="Jane Doe" required>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label class="form-label">Email Address</label>
-                            <input type="email" name="email" id="email" class="form-control" placeholder="jane@example.com" required>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label class="form-label">Purpose</label>
-                            <select name="purpose" id="purpose" class="form-control">
-                                <option value="Applying">Applying for a Job</option>
-                                <option value="Posting">Posting a Job</option>
-                                <option value="Inquiry">General Inquiry</option>
-                            </select>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label class="form-label">Message</label>
-                            <textarea name="message" id="message" class="form-control" rows="4" placeholder="How can we help?"></textarea>
-                        </div>
-                        
-                        <div class="d-grid">
-                            <button type="submit" id="submitBtn" class="btn btn-primary">Submit Entry</button>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="mt-5 mb-5">
-                    <h3 class="mb-4 text-center">Manage Entries</h3>
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead class="table-light">
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Purpose</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Jane Doe</td>
-                                    <td>Posting a Job</td>
-                                    <td>
-                                        <button class="btn btn-sm btn-warning" onclick="editEntry(1, 'Jane Doe', 'jane@example.com', 'Posting', 'Hi')">Edit</button>
-                                        <a href="JobServlet?action=delete&id=1" class="btn btn-sm btn-danger">Delete</a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <div class="copyright"><p>&copy; 2026 TechRecruit Inc.</p></div>
-        </div>
-    </footer>
-
-    <script>
-        function editEntry(id, name, email, purpose, message) {
-            document.getElementById('jobId').value = id;
-            document.getElementById('fullName').value = name;
-            document.getElementById('email').value = email;
-            document.getElementById('purpose').value = purpose;
-            document.getElementById('message').value = message;
-            document.getElementById('formAction').value = 'update';
-            document.getElementById('submitBtn').innerText = 'Update Entry';
-            window.scrollTo({ top: 200, behavior: 'smooth' });
-        }
-    </script>
+    <footer>
+        <div class="container"><div class="copyright"><p>&copy; 2026 TechRecruit Inc.</p></div></div>
+    </footer>
 </body>
 </html>
+this is the code for contact.html, add crud options like update job, delete job 
