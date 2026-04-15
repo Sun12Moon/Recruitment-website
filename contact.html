@@ -3,18 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechRecruit | Contact & Manage</title>
+    <title>TechRecruit | Contact</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
+    
     <style>
-        /* Simple styling for the CRUD table */
-        .manage-section { margin-top: 50px; padding-bottom: 50px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: #fff; }
-        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
-        th { background-color: #f8f9fa; color: #333; }
-        .action-btn { padding: 6px 12px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; font-size: 14px; }
-        .btn-edit { background: #ffc107; color: #000; margin-right: 5px; }
-        .btn-delete { background: #dc3545; color: #fff; }
+        /* Ensuring custom styles blend with Bootstrap */
+        .contact-container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+        .page-header {
+            padding: 60px 0;
+            background: #f8fafc;
+            text-align: center;
+        }
+        .page-header h1 { font-weight: 700; color: #1e293b; }
+        .btn-primary { background-color: #2563eb; border: none; padding: 12px 24px; }
+        .btn-primary:hover { background-color: #1d4ed8; }
     </style>
 </head>
 <body>
@@ -37,66 +50,72 @@
     <main>
         <div class="page-header">
             <div class="container">
+                <div class="badge" style="background: #eff6ff; color: #2563eb; margin-bottom: 20px; display: inline-block; padding: 5px 15px; border-radius: 20px;">Support</div>
                 <h1>Get in Touch</h1>
-                <p>Apply for a job or post an opening.</p>
+                <p>Apply for a job or post an opening. Our team usually responds within 24 hours.</p>
             </div>
         </div>
 
         <section>
             <div class="container">
                 <div class="contact-container">
-                    <form id="jobForm" action="JobServlet" method="POST">
+                    <form action="JobServlet" method="POST">
                         <input type="hidden" name="action" id="formAction" value="insert">
                         <input type="hidden" name="jobId" id="jobId">
 
-                        <div class="form-group">
-                            <label>Full Name</label>
+                        <div class="mb-3">
+                            <label class="form-label">Full Name</label>
                             <input type="text" name="fullName" id="fullName" class="form-control" placeholder="Jane Doe" required>
                         </div>
-                        <div class="form-group">
-                            <label>Email Address</label>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Email Address</label>
                             <input type="email" name="email" id="email" class="form-control" placeholder="jane@example.com" required>
                         </div>
-                        <div class="form-group">
-                            <label>Purpose</label>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Purpose</label>
                             <select name="purpose" id="purpose" class="form-control">
                                 <option value="Applying">Applying for a Job</option>
                                 <option value="Posting">Posting a Job</option>
                                 <option value="Inquiry">General Inquiry</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label>Message</label>
-                            <textarea name="message" id="message" class="form-control" style="height: 120px;" placeholder="How can we help?"></textarea>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Message</label>
+                            <textarea name="message" id="message" class="form-control" rows="4" placeholder="How can we help?"></textarea>
                         </div>
-                        <button type="submit" id="submitBtn" class="btn-primary">Submit</button>
-                        <button type="button" id="cancelBtn" class="btn-nav" style="display:none; background:#ccc;" onclick="resetForm()">Cancel</button>
+                        
+                        <div class="d-grid">
+                            <button type="submit" id="submitBtn" class="btn btn-primary">Submit Entry</button>
+                        </div>
                     </form>
                 </div>
 
-                <div class="manage-section">
-                    <h2>Manage Submissions</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Purpose</th>
-                                <th>Email</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="jobTableBody">
-                            <tr>
-                                <td>Sample User</td>
-                                <td>Posting</td>
-                                <td>sample@tech.com</td>
-                                <td>
-                                    <button class="action-btn btn-edit" onclick="editEntry(1, 'Sample User', 'sample@tech.com', 'Posting', 'I need a dev')">Edit</button>
-                                    <a href="JobServlet?action=delete&id=1" class="action-btn btn-delete" onclick="return confirm('Delete this record?')">Delete</a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="mt-5 mb-5">
+                    <h3 class="mb-4 text-center">Manage Entries</h3>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Purpose</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Jane Doe</td>
+                                    <td>Posting a Job</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-warning" onclick="editEntry(1, 'Jane Doe', 'jane@example.com', 'Posting', 'Hi')">Edit</button>
+                                        <a href="JobServlet?action=delete&id=1" class="btn btn-sm btn-danger">Delete</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </section>
@@ -109,29 +128,15 @@
     </footer>
 
     <script>
-        // Function to populate the form for an Update operation
         function editEntry(id, name, email, purpose, message) {
             document.getElementById('jobId').value = id;
             document.getElementById('fullName').value = name;
             document.getElementById('email').value = email;
             document.getElementById('purpose').value = purpose;
             document.getElementById('message').value = message;
-
-            // Switch form to "update" mode
             document.getElementById('formAction').value = 'update';
-            document.getElementById('submitBtn').innerText = 'Update Record';
-            document.getElementById('cancelBtn').style.display = 'inline-block';
-            
-            // Scroll back to form
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Function to clear form and return to "insert" mode
-        function resetForm() {
-            document.getElementById('jobForm').reset();
-            document.getElementById('formAction').value = 'insert';
-            document.getElementById('submitBtn').innerText = 'Submit';
-            document.getElementById('cancelBtn').style.display = 'none';
+            document.getElementById('submitBtn').innerText = 'Update Entry';
+            window.scrollTo({ top: 200, behavior: 'smooth' });
         }
     </script>
 </body>
